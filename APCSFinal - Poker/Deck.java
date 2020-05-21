@@ -65,7 +65,7 @@ public class Deck
 
     public Card deal() 
     {
-         return deck.remove(0);;
+         return deck.remove(0);
        }
 
 
