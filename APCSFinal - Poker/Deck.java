@@ -64,10 +64,8 @@ public class Deck
 
 
     public Card deal() 
-       {
-         this.shuffle();
-         Card c = deck.remove(0);
-         return c;
+    {
+         return deck.remove(0);;
        }
 
 
