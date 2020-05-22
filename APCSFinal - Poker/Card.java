@@ -18,7 +18,7 @@ public class Card
 
     private char mySuit;
 
-    private static String[] rank = { "A", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+    private static String[] rank = { "A","1", "2", "3", "4", "5", "6", "7", "8", "9",
         "10", "J", "Q", "K" };
 
     private String myRank;
@@ -93,6 +93,9 @@ public class Card
         if ( myRank.equals( "K" ) )
         {
             return 13;
+        }
+        if (myRank.equals( "10" )) {
+            return 10;
         }
         else
         {

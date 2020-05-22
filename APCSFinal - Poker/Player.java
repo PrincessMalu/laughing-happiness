@@ -68,10 +68,16 @@ public class Player
     }
 
 
-    public void setHand( Card c )
+    public void setHand( Card c, int i )
     {
-        hand.add( c );
+        hand.set( i, c );
 
+    }
+
+
+    public ArrayList<Card> getHand()
+    {
+        return hand;
     }
 
 

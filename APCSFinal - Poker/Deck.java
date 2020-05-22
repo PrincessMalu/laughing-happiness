@@ -41,6 +41,15 @@ public class Deck
     }
 
 
+    public Deck(ArrayList<Card> cards) {
+        deck = new ArrayList<Card>();
+       for (int i = 0; i< cards.size(); i++) {
+           //System.out.println(cards.get( i ));
+           deck.add( cards.get( i ) );
+       }
+    }
+
+
     public String deckToString()
     {
         String s = "[";
