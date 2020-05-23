@@ -21,10 +21,32 @@ public class Deck
 
     public ArrayList<Card> deck;
 
+    private char[] suit = { 's', 'c', 'h', 'd' };
+
+    private String[] rank = { "A", "2", "3", "4", "5", "6", "7", "8", "9",
+        "10", "J", "Q", "K" };
+
 
     public Deck()
     {
         deck = new ArrayList<Card>();
+        for ( char c : suit )
+        {
+            for ( String s : rank )
+            {
+                Card card = new Card( c, s );
+                deck.add( card );
+            }
+        }
+    }
+
+
+    public Deck(ArrayList<Card> cards) {
+        deck = new ArrayList<Card>();
+       for (int i = 0; i< cards.size(); i++) {
+           //System.out.println(cards.get( i ));
+           deck.add( cards.get( i ) );
+       }
     }
 
 
@@ -63,46 +85,36 @@ public class Deck
     }
 
 
-    public Card deal() 
+    public Card deal()
     {
-         return deck.remove(0);
-       }
-
-
-    public void shuffle() 
-       {
-            Collections.shuffle( deck );
-       }
-       
-     /*  public Card [] getTwoCards ()
-       {
-           Card [] playerCards = new Card [2];
-           int x = (int)Math.random() * 52;
-           int c = (int)Math.random ()* 52;
-           if (deck [x]!= null)
-           {
-               playerCards [0] = deck [x];
-           }
-        
-           if (x != c)
-           {
-               playerCards[1] = deck [c];
-               deck [c] = null;
-           }
-           
-           else
-           {
-               playerCards [1] = deck [c + 5];
-               deck [c + 5] = null;
-           }
-           deck [x] = null;
-           
-           
-           return playerCards;
-           
-          
-                          
-       }
-       */
-
+        Card c = deck.get( 0 );
+        deck.remove( 0 );
+        // System.out.println(c);
+        return c;
     }
+
+
+    public void shuffle()
+    {
+        Collections.shuffle( deck );
+    }
+
+    /*
+     * public Card [] getTwoCards () { Card [] playerCards = new Card [2]; int x
+     * = (int)Math.random() * 52; int c = (int)Math.random ()* 52; if (deck
+     * [x]!= null) { playerCards [0] = deck [x]; }
+     * 
+     * if (x != c) { playerCards[1] = deck [c]; deck [c] = null; }
+     * 
+     * else { playerCards [1] = deck [c + 5]; deck [c + 5] = null; } deck [x] =
+     * null;
+     * 
+     * 
+     * return playerCards;
+     * 
+     * 
+     * 
+     * }
+     */
+
+}

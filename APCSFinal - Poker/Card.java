@@ -1,94 +1,157 @@
 import java.util.*;
+
+
 /**
  * 
- *  This class 
+ * This class
  *
- *  @author  Shreedevi and Malavika
- *  @version Apr 27, 2020
- *  @author  Period: 1
- *  @author  Assignment: PokerFinalProject
+ * @author Shreedevi and Malavika
+ * @version Apr 27, 2020
+ * @author Period: 1
+ * @author Assignment: PokerFinalProject
  *
- *  @author  Sources: 
+ * @author Sources:
  */
 public class Card
 {
-    private char [] suit = {'s', 'c', 'h', 'd'};
+    private char[] suit = { 's', 'c', 'h', 'd' };
+
     private char mySuit;
-    private String [] rank = {"A", "1", "2", "3", "4","5", "6", "7","8","9","10","J","Q","K"} ;
+
+    private static String[] rank = { "A","1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "10", "J", "Q", "K" };
+
     private String myRank;
-    public Card (char s, String r)
+
+
+    public Card( char s, String r )
     {
         mySuit = s;
         myRank = r;
-        
+
         int counter = 0;
-        for (int count = 0; count < suit.length; count++)
+        for ( int count = 0; count < suit.length; count++ )
         {
-            if (s == suit[count])
+            if ( s == suit[count] )
             {
                 counter++;
                 break;
             }
         }
-        
-        if (counter == 0)
+
+        if ( counter == 0 )
         {
             throw new IllegalArgumentException();
         }
-        
+
         int number = 0;
-        for (int num = 0; num < suit.length; num++)
+        for ( int num = 0; num < suit.length; num++ )
         {
-            if (s == suit[num])
+            if ( s == suit[num] )
             {
                 number++;
                 break;
             }
         }
-        
-        if (number == 0)
+
+        if ( number == 0 )
         {
             throw new IllegalArgumentException();
         }
-      
+
     }
-    
-    public char getSuit ()
+
+
+    public char getSuit()
     {
         return mySuit;
     }
-    
-    public int getValue (String s)
+
+
+    public String getRank() {
+        
+        return myRank;
+
+   }
+
+
+
+    public int getValue()
     {
-        if (s.equals("A") )
+        if ( myRank.equals( "A" ) )
         {
-            return 1;  
+            return 1;
         }
-        if (s.equals("J") )
+        if ( myRank.equals( "J" ) )
         {
-            return 11;  
+            return 11;
         }
-        if (s.equals("Q") )
+        if ( myRank.equals( "Q" ) )
         {
-            return 12;  
+            return 12;
         }
-        if (s.equals("K") )
+        if ( myRank.equals( "K" ) )
         {
-            return 13;  
+            return 13;
+        }
+        if (myRank.equals( "10" )) {
+            return 10;
         }
         else
         {
-            Character num = s.charAt( 0 );
+            Character num = myRank.charAt( 0 );
             return num.getNumericValue( num );
-           
+
         }
+
     }
-    
+
+
+    public static String rankAsString( int __rank )
+    {
+
+        return rank[__rank];
+
+    }
+
+
     public String toString()
     {
-        String s = mySuit + " , " + myRank;
+        String s = "";
+        if (myRank.equals("A") )
+        {
+            s += "Ace";
+        }
+        else if (myRank.equals( "K" ))
+        {
+            s += "King";
+        }
+        else if (myRank.equals("J") )
+        {
+            s += "Jack";
+        }
+        else
+        {
+            s += "" + myRank;
+        }
+        s += " of ";
+        if (mySuit == 's')
+        {
+            s+= "spades";
+        }
+        else if (mySuit == 'c')
+        {
+            s += "clubs";
+        }
+        else if (mySuit == 'h')
+        {
+            s += "heart";
+        }
+        else if (mySuit == 'd')
+        {
+            s += "diamond";
+        }
         return s;
     }
-    
 
 }
