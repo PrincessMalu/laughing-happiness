@@ -56,7 +56,11 @@ public class HumanPlayer extends Player implements MouseListener
         return name;
     }
 
-
+    public void bet (int bet)
+    {
+        amount = amount - bet;
+        
+    }
     public String getTurn()
     {
         myTurn = true;
@@ -64,17 +68,23 @@ public class HumanPlayer extends Player implements MouseListener
     }
 
 
-    public String getWinMessage()
+    public String getRoundWinMessage()
     {
-        return "You won!";
+        return "Yay! You won this round! You now have $" + amount;
     }
-
-
-    public String getLoseMessage()
+    public String getWinGameMessage()
     {
-        return "You Lose! Better Luck next time!";
+        return "Congratulations! You have won the entire game!";
     }
-
+    public String getLoseGameMessage()
+    {
+        return "You lost the game to computer. You have lost $" + (890 - amount);
+    }
+    public String getLoseRoundMessage ()
+    {
+        return "You lost this round to the computer! Better luck next time. You now have $" + amount +
+                        " Let's start the next round.";
+    }
 
     public String getMoneyMessage()
     {

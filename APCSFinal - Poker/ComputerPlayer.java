@@ -11,7 +11,7 @@ public class ComputerPlayer extends Player
 
     int max;
 
-    boolean playerCheck = false;
+   // boolean playerCheck = false;
 
 
     public ComputerPlayer(
@@ -143,13 +143,13 @@ public class ComputerPlayer extends Player
     }
 
 
-    public void setCheck( boolean playerCheck )
-    {
-        playerCheck = true;
-    }
+//    public void setCheck( boolean playerCheck )
+//    {
+//        playerCheck = true;
+//    }
 
 
-    public String betStrat( ArrayList<Card> hand, int bet )
+    public String betStrat( ArrayList<Card> hand, int bet, String s )
     {
         Deck uDeck = new Deck( hand );
         Hands userhand = new Hands( uDeck );
@@ -186,7 +186,7 @@ public class ComputerPlayer extends Player
             }
             else if ( ( max >= 5 ) )
             {
-                if ( playerCheck == true )
+                if ( s.contains( "check" ))
                 {
                     System.out.println( "The computer has checked!" );
                     return "check";
