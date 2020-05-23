@@ -9,6 +9,10 @@ public class ComputerPlayer extends Player
 
     public ArrayList<Card> hand = new ArrayList<Card>();
 
+    int max;
+
+    boolean playerCheck = false;
+
 
     public ComputerPlayer(
         String name,
@@ -75,7 +79,7 @@ public class ComputerPlayer extends Player
             }
             for ( int x = 0; x < size - hand.size(); x++ )
             {
-                this.setHand( deck.deal(), x );
+                hand.add( x, deck.deal() );
             }
 
         }
@@ -101,14 +105,51 @@ public class ComputerPlayer extends Player
             }
             for ( int x = 0; x < size - hand.size(); x++ )
             {
-                this.setHand( deck.deal(), x );
+                hand.add( x, deck.deal() );
             }
+
+        }
+        else if ( userhand.display().contains( "high card" ) )
+        {
+            max = 0;
+            int temp = hand.get( 0 ).getValue();
+            for ( int c = 0; c < hand.size(); c++ )
+            {
+                max = hand.get( c ).getValue();
+                if ( temp > max )
+                {
+                    max = temp;
+                }
+            }
+            for ( int count = 0; count < hand.size(); )
+            {
+                if ( hand.get( count ).getValue() != max )
+                {
+                    hand.remove( count );
+
+                }
+                else
+                {
+                    count++;
+                }
+            }
+            for ( int x = 0; x < size - hand.size(); x++ )
+            {
+                hand.add( x, deck.deal() );
+            }
+
         }
 
     }
 
 
-    public void betStrat( ArrayList<Card> hand, Deck deck, int bet )
+    public void setCheck( boolean playerCheck )
+    {
+        playerCheck = true;
+    }
+
+
+    public String betStrat( ArrayList<Card> hand, int bet )
     {
         Deck uDeck = new Deck( hand );
         Hands userhand = new Hands( uDeck );
@@ -117,18 +158,53 @@ public class ComputerPlayer extends Player
             || userhand.display().contains( "three of a kind" ) )
         {
             match( bet );
+            System.out.println( "The computer has matched" );
+
+            return "match";
         }
         else if ( userhand.display().contains( "high straight" )
             || userhand.display().contains( "full house" ) )
         {
             raise( bet + 15 );
+            System.out.println( "The computer has raised by $15" );
+
+            return "raise";
         }
         else if ( userhand.display().contains( "straight flush" )
             || userhand.display().contains( "flush" )
             || userhand.display().contains( "four of a kind" ) )
         {
-            raise( bet + 50);
+            raise( bet + 50 );
+            System.out.println( "The computer has raised by $50" );
+            return "raise";
         }
+        else if ( userhand.display().contains( "high card" ) )
+        {
+            if ( ( max <= 4 ) )
+            {
+                return "fold";
+            }
+            else if ( ( max >= 5 ) )
+            {
+                if ( playerCheck == true )
+                {
+                    System.out.println( "The computer has checked!" );
+                    return "check";
+                }
+                else
+                {
+                    match( bet );
+                    System.out.println( "The computer has matched" );
+
+                    return "match";
+
+                }
+            }
+
+        }
+
+        return "fold";
+
     }
 
 }
