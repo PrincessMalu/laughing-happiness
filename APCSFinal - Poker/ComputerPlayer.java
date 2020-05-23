@@ -10,7 +10,11 @@ public class ComputerPlayer extends Player
         super (name, chip, card, card1 ,card2, card3, card4);
     }
    public void gStrat(ArrayList<Card> hand) {
-       
+       Deck uDeck = new Deck( hand );
+       Hands userhand = new Hands( uDeck );
+       if (userhand.display().contains("pair of")) {
+           
+       }
        
    }
     

@@ -311,7 +311,7 @@ public class Hands
     }
 
 
-    public void display()
+    public String display()
 
     {
 
@@ -389,6 +389,7 @@ public class Hands
                                    // viewing the output
 
         System.out.println( s );
+        return s;
 
     }
 
